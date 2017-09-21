@@ -6,3 +6,31 @@ html, body {
 .mycenter {
      text-align: center;
 }
+
+#program_title {
+     color: blue;
+     text-align: center;
+}
+
+#results {
+     border-color: black;
+     border-style: solid;
+     border-width: 2px;
+     margin: 40px 10px 10px 10px;
+     padding: 10px;
+}
+
+#results h2 {
+     margin-top: 0px;
+     font-style: italic;
+     text-align: center;
+}
+
+pre {
+     border-color: black;
+     border-style: solid;
+     border-width: 2px;
+     margin: 40px 10px 10px 10px;
+     padding: 10px;
+     background-color: #DDD;
+}

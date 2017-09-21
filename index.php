@@ -1,3 +1,4 @@
+<?php require_once 'trip_logic.php'; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,38 +8,14 @@
     <body>
         
         <?php
-            #echo("<hr>LINE " . __LINE__ . ") Get contents:"); echo("<pre>" . print_r($_GET, 1) . "</pre><br>" . __LINE__ . ") Post contents:"); echo("<pre>" . print_r($_POST, 1) . "</pre><hr/>");
-            
+            #echo("<pre>Get contents:<br/>" . print_r($_GET, 1) . "</pre>");
             $MAXIMUM_SPEED = 120;
-            
-            if (isset($_GET['numberOfMiles'])){
-                $numberOfMiles = $_GET['numberOfMiles'];
-            }
-            else {
-                $numberOfMiles = '';
-            }
-            
-            if (isset($_GET['estimatedSpeed'])){
-                $estimatedSpeed = $_GET['estimatedSpeed'];
-            }
-            else {
-                //if it's not provided, start with a generic value
-                $estimatedSpeed = '60';
-            }
-            
-            if (isset($_GET['roundOff'])){
-                $roundOffChecked = " checked='checked'";
-            }
-            else {
-                $roundOffChecked = "";
-            }
-        
         ?>
         
         <div id='mainBody'>
             <h1 class='mycenter'>Alan Martinson - P2 For CSCI E15</h1>
             
-            <h2>Trip Time Calculator</h2>
+            <h2 id='program_title'>Trip Time Calculator</h2>
         
             <div>
                 This application calculates the estimated time a trip will take you.
@@ -50,7 +27,7 @@
             
             <form action=''>
                 <label for='numberOfMiles'>Number of miles you will drive: </label>
-                <input type='text' name='numberOfMiles' id='numberOfMiles' value=<?php echo($numberOfMiles)?>>
+                <input type='text' name='numberOfMiles' id='numberOfMiles' value='<?php echo($numberOfMiles)?>'>
                 
                 <br/>
                 <label for='estimatedSpeed'>Estimated Speed: </label>
@@ -59,21 +36,45 @@
                         
                         for ($i=5; $i<=$MAXIMUM_SPEED; $i= $i+5){
                             if($i == $estimatedSpeed){
-                                $selected = " selected";
+                                $estimatedSpeedSelected = " selected";
                             }
                             else {
-                                $selected = "";
+                                $estimatedSpeedSelected = "";
                             }
                             
-                            echo("\t\t\t\t\t<option" . $selected . ">" . $i . "</option>\n");
+                            echo("\t\t\t\t\t<option" . $estimatedSpeedSelected . ">" . $i . "</option>\n");
                         }
                     ?>
                 </select>
                 
-                <br/>Round off results to the nearest 15 minutes: <input type='checkbox' name='roundOff[]' <?php echo($roundOffChecked)?>>
+                <br/>Round up to the nearest 15 minutes: <input type='checkbox' name='roundOff[]' <?php echo($roundOffChecked)?>>
                 <br/>
                 <button type='submit'>Submit</button>
             </form>
+            <?php
+                //should we display the results?
+                if(($estimatedSpeed != '') && ($numberOfMiles != '')){
+            ?>
+                <div id='results'>
+                    <h2>Results</h2>
+                    the results will go here<br/>
+                    
+                    <?php
+                        if ($roundOffResults){
+                            $willOrWillNot = "";
+                        }
+                        else {
+                            $willOrWillNot = " NOT";
+                        }
+                    ?>
+                    We will <?php echo($willOrWillNot);?> be rounding off the results.<br/>
+                    Based on your expected average speed of <?php echo($estimatedSpeed);?>, it will take you
+                    x hours and y minutes to travel <?php echo($numberOfMiles);?> miles.
+                </div>
+            <?php
+                //should we display the results?
+                }
+            ?>
             
         </div>
     </body>
