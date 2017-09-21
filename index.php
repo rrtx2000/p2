@@ -20,12 +20,12 @@
             <div>
                 This application calculates the estimated time a trip will take you.
                 You enter the number of miles you will drive, your anticipated estimated speed, and
-                if you want to round off the results to the nearest 15 minutes.
+                if you want to round the results up to the nearest 15 minutes.
                 <br/>
                 <br/>
             </div>
             
-            <form action=''>
+            <form action='#'>
                 <label for='numberOfMiles'>Number of miles you will drive: </label>
                 <input type='text' name='numberOfMiles' id='numberOfMiles' value='<?php echo($numberOfMiles)?>'>
                 
