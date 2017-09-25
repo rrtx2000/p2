@@ -7,6 +7,10 @@ html, body {
      text-align: center;
 }
 
+#mainBody {
+     margin: 0px 20px 0px 20px;
+}
+
 #program_title {
      color: blue;
      text-align: center;
