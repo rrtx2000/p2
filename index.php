@@ -9,10 +9,6 @@
     </head>
     <body>
         
-        <?php
-            #echo("<pre>Get contents:<br/>" . print_r($_GET, 1) . "</pre>");
-        ?>
-        
         <div id='mainBody'>
             <h1 class='mycenter'>Alan Martinson - P2 For CSCI E15</h1>
             
@@ -64,19 +60,34 @@
             </form>
             <?php
                 //should we display the results?
-                if(($estimatedSpeed != '') && ($numberOfMiles != '')){
+                if(($estimatedSpeed != '') && ($numberOfMiles != '') && empty($errors)){
             ?>
             
                 <div id='results'>
                     <h2>Results</h2>
                     
                     Based on your expected average speed of <?php echo($estimatedSpeed);?>mph, it will take you
-                    <?php echo($totalHours);?> hours and <?php echo((int)$totalMinutes);?> minutes to travel <?php echo($numberOfMiles);?> miles.
+                    <?php echo($totalHours);?> hours
+                    and <?php echo((int)$totalMinutes);?> minute<?php if ((int)$totalMinutes != 1){echo("s");} ?>
+                    to travel <?php echo($numberOfMiles);?> mile<?php if ($numberOfMiles != 1){echo("s");} ?>.
+                    
+                    <?php
+                        $speedMessage = "<br/><br/>";
+                        
+                        if ($estimatedSpeed <= '15') {
+                            $speedMessage .= "What are you riding, a turtle? <img src='images/turtle.png' height='100' alt='turtle' />";
+                        }
+                        elseif ($estimatedSpeed >= '100') {
+                            $speedMessage .= "You might want to slow down or you there's a good chance you will be finishing your trip in one of these:
+                            <img src='images/hearse.jpg' height='100' alt='hearse' />";
+                        }
+                        
+                        echo($speedMessage);
+                    ?>
                 </div>
                 
             <?php
-                //closing of "should we display the results?"
-                }
+                }   //closing of "should we display the results?"
             ?>
             
         </div>

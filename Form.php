@@ -146,8 +146,8 @@ class Form
             'numeric' => ' can only contain numbers',
             'required' => ' is required.',
             'email' => ' is not a valid email address.',
-            'min' => ' has to be greater than '.$parameter,
-            'max' => ' has to be less than '.$parameter,
+            'min' => ' has to be greater than or equal to '.$parameter,
+            'max' => ' has to be less than or equal to '.$parameter,
         ];
         # If a message for the rule was found, use that, otherwise default to " has an error"
         $message = isset($language[$rule]) ? $language[$rule] : ' has an error.';
