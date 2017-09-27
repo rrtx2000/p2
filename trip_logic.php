@@ -1,8 +1,6 @@
 <?php
 require_once('Form.php');
-//use DWA\Form;
 $form = new DWA\Form($_GET);
-#echo ($form);
 
 $MINIMUM_SPEED = 5;
 $MAXIMUM_SPEED = 120;
@@ -39,7 +37,6 @@ else {
     $roundOffResults = false;
     $roundOffChecked = "";
 }
-
 
 $totalHours = 0;
 $totalMinutes = 0;
